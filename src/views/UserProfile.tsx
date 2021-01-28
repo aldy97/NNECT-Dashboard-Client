@@ -163,7 +163,7 @@ function UserProfile(props: any) {
                         <Input
                           defaultValue={name}
                           onChange={handleNameChange}
-                          placeholder="Company"
+                          placeholder="Restaurant Name"
                           type="text"
                         />
                       </FormGroup>
@@ -198,7 +198,7 @@ function UserProfile(props: any) {
                         <Input
                           defaultValue={managerName}
                           onChange={handleManagerNameChange}
-                          placeholder="Company"
+                          placeholder="Manager's name"
                           type="text"
                         />
                       </FormGroup>
@@ -209,7 +209,7 @@ function UserProfile(props: any) {
                         <Input
                           defaultValue={managerNumber}
                           onChange={handleManagerNumberChange}
-                          placeholder="Last Name"
+                          placeholder="Manager's number"
                           type="text"
                         />
                       </FormGroup>
@@ -246,7 +246,7 @@ function UserProfile(props: any) {
                         <Input
                           defaultValue={postCode}
                           onChange={handlePostCodeChange}
-                          placeholder="ZIP Code"
+                          placeholder="Postal Code"
                           type="text"
                         />
                       </FormGroup>
@@ -257,7 +257,7 @@ function UserProfile(props: any) {
                         <Input
                           defaultValue={maxCap}
                           onChange={handleMaxCapChange}
-                          placeholder="Capacity"
+                          placeholder="Max Capacity"
                           type="number"
                         />
                       </FormGroup>
