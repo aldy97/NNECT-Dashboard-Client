@@ -40,6 +40,7 @@ function LoginForm({ updateUserInfo, setForgetPassword }: LoginFormProps) {
     if (response.status === 201) {
       message.success("Login Success!");
       const user: USER = response.data.restaurant;
+      window.localStorage.setItem("_id", user._id);
       updateUserInfo(user);
       setIsLogin(true);
     } else {

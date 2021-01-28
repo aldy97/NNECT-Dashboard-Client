@@ -104,7 +104,7 @@ function UserProfile({ updateUserInfo, user }: UserProfileProps) {
     }
 
     const request = {
-      _id: user._id,
+      _id: window.localStorage.getItem("_id"),
       updatedFields: {
         name,
         email,
@@ -130,7 +130,7 @@ function UserProfile({ updateUserInfo, user }: UserProfileProps) {
   // Change password:
   const handleChangePassword = async (): Promise<void> => {
     const request = {
-      _id: user._id,
+      _id: window.localStorage.getItem("_id"),
       updatedFields: {
         oldPassword,
         newPassword,
