@@ -8,9 +8,7 @@ function Footer() {
       <Container fluid>
         <Nav>
           <NavItem>
-            <NavLink href="https://www.creative-tim.com/?ref=bdr-user-archive-footer">
-              NNECT
-            </NavLink>
+            <NavLink href="https://www.nnect.ca/">NNECT</NavLink>
           </NavItem>
           <NavItem>
             <NavLink href="mailto:support@nnect.ca">Contact Us</NavLink>
