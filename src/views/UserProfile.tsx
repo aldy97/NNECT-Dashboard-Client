@@ -95,6 +95,7 @@ function UserProfile(props: any) {
 
   // Change profile:
   const handleSaveBtnChange = async (): Promise<void> => {
+    console.log("save button 1 clicked");
     if (!name || !number || !email) {
       message.error("Restaurant name, phone number and email are mandatory fields");
       return;
@@ -126,6 +127,7 @@ function UserProfile(props: any) {
 
   // Change password:
   const handleChangePassword = async (): Promise<void> => {
+    console.log("save button 2 clicked");
     const request = {
       _id: user._id,
       updatedFields: {
