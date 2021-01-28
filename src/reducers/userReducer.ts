@@ -55,6 +55,7 @@ export const UserReducer = (
 ): UserReducerProps => {
   switch (action.type) {
     case UPDATE_USER_INFO: {
+      console.log(`user updated in redux: ${action.user}`);
       return { user: action.user };
     }
     case CLEAR_USER_INFO: {
