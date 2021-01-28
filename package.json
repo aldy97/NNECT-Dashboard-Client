@@ -2,7 +2,7 @@
   "name": "nnect-dashboard",
   "version": "1.2.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://nnect-dashboard-client.netlify.app",
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
     "@fortawesome/fontawesome-free": "5.15.1",
