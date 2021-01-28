@@ -23,9 +23,12 @@ import { Dispatch } from "redux";
 import axios from "axios";
 import { URL } from "../assets/constants";
 
-function UserProfile(props: any) {
-  const updateUserInfo: (user: USER) => void = props.updateUserInfo;
-  const user: USER = props.user;
+interface UserProfileProps {
+  updateUserInfo: (user: USER) => void;
+  user: USER;
+}
+
+function UserProfile({ updateUserInfo, user }: UserProfileProps) {
   // profile:
 
   const [name, setName] = useState<string>(user.name);
@@ -95,7 +98,6 @@ function UserProfile(props: any) {
 
   // Change profile:
   const handleSaveBtnChange = async (): Promise<void> => {
-    console.log("save button 1 clicked");
     if (!name || !number || !email) {
       message.error("Restaurant name, phone number and email are mandatory fields");
       return;
@@ -127,7 +129,6 @@ function UserProfile(props: any) {
 
   // Change password:
   const handleChangePassword = async (): Promise<void> => {
-    console.log("save button 2 clicked");
     const request = {
       _id: user._id,
       updatedFields: {
