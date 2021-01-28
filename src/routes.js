@@ -2,14 +2,14 @@ import Dashboard from "views/Dashboard.js";
 import UserProfile from "views/UserProfile";
 
 var routes = [
-  // {
-  //   path: "/dashboard",
-  //   name: "Dashboard",
-  //   rtlName: "لوحة القيادة",
-  //   icon: "tim-icons icon-chart-pie-36",
-  //   component: Dashboard,
-  //   layout: "/admin",
-  // },
+  {
+    path: "/dashboard",
+    name: "Dashboard",
+    rtlName: "لوحة القيادة",
+    icon: "tim-icons icon-chart-pie-36",
+    component: Dashboard,
+    layout: "/admin",
+  },
   // {
   //   path: "/icons",
   //   name: "Icons",
@@ -34,14 +34,14 @@ var routes = [
   //   component: Notifications,
   //   layout: "/admin",
   // },
-  // {
-  //   path: "/user-profile",
-  //   name: "Restaurant Profile",
-  //   rtlName: "ملف تعريفي للمستخدم",
-  //   icon: "tim-icons icon-single-02",
-  //   component: UserProfile,
-  //   layout: "/admin",
-  // },
+  {
+    path: "/user-profile",
+    name: "Restaurant Profile",
+    rtlName: "ملف تعريفي للمستخدم",
+    icon: "tim-icons icon-single-02",
+    component: UserProfile,
+    layout: "/admin",
+  },
   // {
   //   path: "/tables",
   //   name: "Table List",
