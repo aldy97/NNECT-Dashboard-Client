@@ -25,9 +25,9 @@ import { URL } from "../assets/constants";
 
 function UserProfile(props: any) {
   const updateUserInfo: (user: USER) => void = props.updateUserInfo;
-
-  // profile:
   const user: USER = props.user;
+  // profile:
+
   const [name, setName] = useState<string>(user.name);
   const [email, setEmail] = useState(user.email);
   const [number, setNumber] = useState<string>(user.phoneNumber);
