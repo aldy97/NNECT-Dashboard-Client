@@ -14,6 +14,7 @@ import {
 } from "reactstrap";
 import { message, Space } from "antd";
 import { MESSAGES } from "../assets/constants";
+import avatar from "../assets/img/default-avatar.png";
 import { connect } from "react-redux";
 import { USER } from "../reducers/userReducer";
 import { UpdateUserInfo, UPDATE_USER_INFO } from "../actions/userAction";
@@ -30,7 +31,6 @@ interface UserProfileProps {
 
 function UserProfile({ updateUserInfo, user }: UserProfileProps) {
   // profile:
-
   const [name, setName] = useState<string>(user.name);
   const [email, setEmail] = useState(user.email);
   const [number, setNumber] = useState<string>(user.phoneNumber);
@@ -281,7 +281,7 @@ function UserProfile({ updateUserInfo, user }: UserProfileProps) {
               </CardFooter>
             </Card>
           </Col>
-          <Col md="4">
+          {/* <Col md="4">
             <Card className="card-user">
               <CardBody>
                 <CardText />
@@ -291,11 +291,7 @@ function UserProfile({ updateUserInfo, user }: UserProfileProps) {
                   <div className="block block-three" />
                   <div className="block block-four" />
                   <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                    <img
-                      alt="..."
-                      className="avatar"
-                      src={require("assets/img/little-bird.jpg").default}
-                    />
+                    <img alt="..." className="avatar" src={avatar} />
                     <h3 className="title">{user.name}</h3>
                   </a>
                 </div>
@@ -314,7 +310,7 @@ function UserProfile({ updateUserInfo, user }: UserProfileProps) {
                 </div>
               </CardFooter>
             </Card>
-          </Col>
+          </Col> */}
         </Row>
         <Row>
           <Col md="8">

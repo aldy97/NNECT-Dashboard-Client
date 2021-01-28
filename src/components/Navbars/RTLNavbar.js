@@ -105,12 +105,7 @@ function AdminNavbar(props) {
                 </Button>
               </InputGroup>
               <UncontrolledDropdown nav>
-                <DropdownToggle
-                  caret
-                  color="default"
-                  data-toggle="dropdown"
-                  nav
-                >
+                <DropdownToggle caret color="default" data-toggle="dropdown" nav>
                   <div className="notification d-none d-lg-block d-xl-block" />
                   <i className="tim-icons icon-sound-wave" />
                   <p className="d-lg-none">Notifications</p>
@@ -122,39 +117,23 @@ function AdminNavbar(props) {
                     </DropdownItem>
                   </NavLink>
                   <NavLink tag="li">
-                    <DropdownItem className="nav-item">
-                      You have 5 more tasks
-                    </DropdownItem>
+                    <DropdownItem className="nav-item">You have 5 more tasks</DropdownItem>
                   </NavLink>
                   <NavLink tag="li">
-                    <DropdownItem className="nav-item">
-                      Your friend Michael is in town
-                    </DropdownItem>
+                    <DropdownItem className="nav-item">Your friend Michael is in town</DropdownItem>
                   </NavLink>
                   <NavLink tag="li">
-                    <DropdownItem className="nav-item">
-                      Another notification
-                    </DropdownItem>
+                    <DropdownItem className="nav-item">Another notification</DropdownItem>
                   </NavLink>
                   <NavLink tag="li">
-                    <DropdownItem className="nav-item">
-                      Another one
-                    </DropdownItem>
+                    <DropdownItem className="nav-item">Another one</DropdownItem>
                   </NavLink>
                 </DropdownMenu>
               </UncontrolledDropdown>
               <UncontrolledDropdown nav>
-                <DropdownToggle
-                  caret
-                  color="default"
-                  nav
-                  onClick={(e) => e.preventDefault()}
-                >
+                <DropdownToggle caret color="default" nav onClick={(e) => e.preventDefault()}>
                   <div className="photo">
-                    <img
-                      alt="..."
-                      src={require("assets/img/anime3.png").default}
-                    />
+                    <img alt="..." src={require("assets/img/anime3.png").default} />
                   </div>
                   <b className="caret d-none d-lg-block d-xl-block" />
                   <p className="d-lg-none">Log out</p>
@@ -177,18 +156,10 @@ function AdminNavbar(props) {
           </Collapse>
         </Container>
       </Navbar>
-      <Modal
-        modalClassName="modal-search"
-        isOpen={modalSearch}
-        toggle={toggleModalSearch}
-      >
+      <Modal modalClassName="modal-search" isOpen={modalSearch} toggle={toggleModalSearch}>
         <ModalHeader>
           <Input placeholder="SEARCH" type="text" />
-          <button
-            aria-label="Close"
-            className="close"
-            onClick={toggleModalSearch}
-          >
+          <button aria-label="Close" className="close" onClick={toggleModalSearch}>
             <i className="tim-icons icon-simple-remove" />
           </button>
         </ModalHeader>

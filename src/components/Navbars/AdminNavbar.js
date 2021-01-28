@@ -20,7 +20,7 @@ import {
   NavbarToggler,
   ModalHeader,
 } from "reactstrap";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 function AdminNavbar(props) {
   const [collapseOpen, setcollapseOpen] = useState(false);
@@ -28,6 +28,8 @@ function AdminNavbar(props) {
   const [color, setcolor] = useState("navbar-transparent");
 
   const [isLogOut, setIsLogOut] = useState(false);
+
+  const history = useHistory();
 
   useEffect(() => {
     window.addEventListener("resize", updateColor);
@@ -62,6 +64,10 @@ function AdminNavbar(props) {
 
   const handleLogOutClick = () => {
     setIsLogOut(true);
+  };
+
+  const handleProfileClick = () => {
+    history.push("/admin/user-profile");
   };
 
   return (
@@ -133,10 +139,9 @@ function AdminNavbar(props) {
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-navbar" right tag="ul">
                   <NavLink tag="li">
-                    <DropdownItem className="nav-item">Profile</DropdownItem>
-                  </NavLink>
-                  <NavLink tag="li">
-                    <DropdownItem className="nav-item">Settings</DropdownItem>
+                    <DropdownItem className="nav-item" onClick={handleProfileClick}>
+                      Profile
+                    </DropdownItem>
                   </NavLink>
                   <DropdownItem divider tag="li" />
                   <NavLink tag="li">
