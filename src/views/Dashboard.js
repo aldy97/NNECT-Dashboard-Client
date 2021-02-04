@@ -13,9 +13,8 @@ function Dashboard(props) {
       <div className="content">
         <Row>
           <Col>
-            <Card>
+            <Card className="card-user" style={{ height: 150 }}>
               <CardBody>
-                <CardText />
                 <div className="author" style={{ textAlign: "center" }}>
                   <div className="block block-one" />
                   <div className="block block-two" />

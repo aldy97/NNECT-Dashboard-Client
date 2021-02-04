@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import { USER } from "../reducers/userReducer";
 import { RootState } from "../reducers/index";
 import { Redirect } from "react-router-dom";
-import { URL } from "../assets/constants";
+import { URL, DEV_URL } from "../assets/constants";
 
 const Wrapper = styled.div`
   text-align: center;
@@ -24,6 +24,8 @@ export const Label = styled.div`
 interface ResetPasswordProps {
   user: USER;
 }
+
+const BASE_URL = process.env.NODE_ENV === "production" ? URL : DEV_URL;
 
 function ResetPassword({ user }: ResetPasswordProps) {
   const [password, setPassword] = useState<string>("");
@@ -42,7 +44,7 @@ function ResetPassword({ user }: ResetPasswordProps) {
       },
     };
 
-    const response = await axios.put(`${URL}/api/changePassword`, request);
+    const response = await axios.put(`${BASE_URL}/api/changePassword`, request);
     if (response.data.status === 200) {
       message.success(MESSAGES.CHANGE_PASSWORD_SUCC);
       setChanged(true);

@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 import { USER } from "../reducers/userReducer";
 import { RootState } from "../reducers/index";
 import { Dispatch } from "redux";
-import { URL } from "../assets/constants";
+import { URL, DEV_URL } from "../assets/constants";
 
 export interface OfferPorps {
   _id: string;
@@ -31,6 +31,8 @@ interface OffersProperty {
   updateOffersToRedux: (offers: OfferPorps[]) => void;
 }
 
+const BASE_URL = process.env.NODE_ENV === "production" ? URL : DEV_URL;
+
 function Offers({ user, updateOffersToRedux }: OffersProperty) {
   // add offer modal
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -43,7 +45,7 @@ function Offers({ user, updateOffersToRedux }: OffersProperty) {
   const [selectedOffer, setSelectedOffer] = useState<OfferPorps>();
 
   const getOffers = async () => {
-    const response = await axios.get(`${URL}/api/getOffers/${user._id}`);
+    const response = await axios.get(`${BASE_URL}/api/getOffers/${user._id}`);
     const offers: OfferPorps[] = response.data.offers;
     if (offers) {
       setOffers(offers);
@@ -57,7 +59,7 @@ function Offers({ user, updateOffersToRedux }: OffersProperty) {
   };
 
   const handleDelBtnClick = async (index: number) => {
-    const result = await axios.delete(`${URL}/api/deleteOffer/${offers[index]._id}`);
+    const result = await axios.delete(`${BASE_URL}/api/deleteOffer/${offers[index]._id}`);
     if (result.status === 204) {
       getOffers();
       message.success(MESSAGES.OFFER_DEL_SUCC);

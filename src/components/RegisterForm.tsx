@@ -9,11 +9,13 @@ import { USER } from "../reducers/userReducer";
 import { UPDATE_USER_INFO, UpdateUserInfo } from "../actions/userAction";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import { URL } from "../assets/constants";
+import { URL, DEV_URL } from "../assets/constants";
 
 interface RegisterFormProps {
   updateUserInfo: (user: USER) => void;
 }
+
+const BASE_URL = process.env.NODE_ENV === "production" ? URL : DEV_URL;
 
 function RegisterForm({ updateUserInfo }: RegisterFormProps) {
   const [verificationSent, setVerificationSent] = useState<boolean>(false);
@@ -55,7 +57,7 @@ function RegisterForm({ updateUserInfo }: RegisterFormProps) {
       password,
       confirmPassword,
     };
-    const response = await axios.put(`${URL}/api/register/`, request);
+    const response = await axios.put(`${BASE_URL}/api/register/`, request);
 
     if (response.data.status === 201) {
       message.info(MESSAGES.VERIFICATION_EMAIL_SENT);
@@ -74,7 +76,7 @@ function RegisterForm({ updateUserInfo }: RegisterFormProps) {
       password,
       registerCode: code,
     };
-    const response = await axios.post(`${URL}/api/createRestaurant`, request);
+    const response = await axios.post(`${BASE_URL}/api/createRestaurant`, request);
 
     if (response.status === 201) {
       const user: USER = response.data.newRestaurant;

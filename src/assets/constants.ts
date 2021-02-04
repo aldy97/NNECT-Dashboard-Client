@@ -20,4 +20,5 @@ export const COLORS = {
   ORANGE: "#ffa940",
 };
 
+export const DEV_URL = "http://localhost:7001";
 export const URL = "https://nnect-dashboard.herokuapp.com";

@@ -18,7 +18,7 @@ import { MESSAGES } from "../assets/constants";
 import { USER } from "../reducers/userReducer";
 import axios from "axios";
 import moment, { Moment } from "moment";
-import { URL } from "../assets/constants";
+import { URL, DEV_URL } from "../assets/constants";
 
 interface AddOfferModalProps {
   user: USER;
@@ -35,6 +35,8 @@ export enum options {
   weekly = "Weekly",
   monthly = "Monthly",
 }
+
+const BASE_URL = process.env.NODE_ENV === "production" ? URL : DEV_URL;
 
 function AddOfferModal({
   user,
@@ -100,7 +102,7 @@ function AddOfferModal({
       repeat,
       maxPeople,
     };
-    const response = await axios.post(`${URL}/api/createOffer`, requestBody);
+    const response = await axios.post(`${BASE_URL}/api/createOffer`, requestBody);
     if (response.status === 201) {
       message.success(MESSAGES.OFFER_ADD_SUCC);
       getOffers();
@@ -127,7 +129,7 @@ function AddOfferModal({
       },
     };
 
-    const response = await axios.put(`${URL}/api/editOffer`, request);
+    const response = await axios.put(`${BASE_URL}/api/editOffer`, request);
     if (response.data.status === 200) {
       message.success(response.data.message);
       setIsModalVisible(false);

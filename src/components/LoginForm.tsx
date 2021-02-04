@@ -7,7 +7,7 @@ import { USER } from "../reducers/userReducer";
 import { UPDATE_USER_INFO, UpdateUserInfo } from "../actions/userAction";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import { URL } from "../assets/constants";
+import { URL, DEV_URL } from "../assets/constants";
 
 export const StyledForm = styled(Form)`
   width: 360px;
@@ -19,6 +19,8 @@ interface LoginFormProps {
   updateUserInfo: (user: USER) => void;
   setForgetPassword: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+const BASE_URL = process.env.NODE_ENV === "production" ? URL : DEV_URL;
 
 function LoginForm({ updateUserInfo, setForgetPassword }: LoginFormProps) {
   const [email, setEmail] = useState<string>();
@@ -36,7 +38,7 @@ function LoginForm({ updateUserInfo, setForgetPassword }: LoginFormProps) {
 
   const handleLoginBtnClick = async (): Promise<void> => {
     const request = { email, password };
-    const response = await axios.post(`${URL}/api/login`, request);
+    const response = await axios.post(`${BASE_URL}/api/login`, request);
     if (response.status === 201) {
       message.success("Login Success!");
       const user: USER = response.data.restaurant;

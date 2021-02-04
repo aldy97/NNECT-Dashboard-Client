@@ -9,12 +9,14 @@ import { USER } from "../reducers/userReducer";
 import { UPDATE_USER_INFO, UpdateUserInfo } from "../actions/userAction";
 import { Dispatch } from "redux";
 import { connect } from "react-redux";
-import { URL } from "../assets/constants";
+import { URL, DEV_URL } from "../assets/constants";
 
 interface ForgetPasswordProps {
   setForgetPassword: React.Dispatch<React.SetStateAction<boolean>>;
   updateUserInfo: (user: USER) => void;
 }
+
+const BASE_URL = process.env.NODE_ENV === "production" ? URL : DEV_URL;
 
 function ForgetPassword({ setForgetPassword, updateUserInfo }: ForgetPasswordProps) {
   const [email, setEmail] = useState<string>("");
@@ -30,7 +32,7 @@ function ForgetPassword({ setForgetPassword, updateUserInfo }: ForgetPasswordPro
       return;
     }
 
-    const response = await axios.get(`${URL}/api/forgetPassword/${email}`);
+    const response = await axios.get(`${BASE_URL}/api/forgetPassword/${email}`);
     if (response.data.status === 200) {
       message.info(response.data.message);
       setRequestSent(true);
@@ -41,7 +43,7 @@ function ForgetPassword({ setForgetPassword, updateUserInfo }: ForgetPasswordPro
 
   const handelVerifyClick = async (): Promise<void> => {
     const request = { email, resetCode: code };
-    const response = await axios.post(`${URL}/api/verifyResetPassword`, request);
+    const response = await axios.post(`${BASE_URL}/api/verifyResetPassword`, request);
     if (response.data.status === 200) {
       const user: USER = response.data.restaurant;
       updateUserInfo(user);

@@ -14,7 +14,6 @@ import {
 } from "reactstrap";
 import { message, Space } from "antd";
 import { MESSAGES } from "../assets/constants";
-import avatar from "../assets/img/default-avatar.png";
 import { connect } from "react-redux";
 import { USER } from "../reducers/userReducer";
 import { UpdateUserInfo, UPDATE_USER_INFO } from "../actions/userAction";
@@ -22,12 +21,14 @@ import { RootState } from "../reducers/index";
 import { Redirect } from "react-router-dom";
 import { Dispatch } from "redux";
 import axios from "axios";
-import { URL } from "../assets/constants";
+import { URL, DEV_URL } from "../assets/constants";
 
 interface UserProfileProps {
   updateUserInfo: (user: USER) => void;
   user: USER;
 }
+
+const BASE_URL = process.env.NODE_ENV === "production" ? URL : DEV_URL;
 
 function UserProfile({ updateUserInfo, user }: UserProfileProps) {
   // profile:
@@ -117,7 +118,7 @@ function UserProfile({ updateUserInfo, user }: UserProfileProps) {
         maxCapacity: maxCap,
       },
     };
-    const response = await axios.put(`${URL}/api/updateRestaurantInfo`, request);
+    const response = await axios.put(`${BASE_URL}/api/updateRestaurantInfo`, request);
     if (response.status === 200) {
       const user: USER = response.data.newRestaurant;
       updateUserInfo(user);
@@ -138,7 +139,7 @@ function UserProfile({ updateUserInfo, user }: UserProfileProps) {
       },
     };
 
-    const response = await axios.put(`${URL}/api/changePassword`, request);
+    const response = await axios.put(`${BASE_URL}/api/changePassword`, request);
     if (response.data.status === 200) {
       const user: USER = response.data.newRestaurant;
       updateUserInfo(user);
