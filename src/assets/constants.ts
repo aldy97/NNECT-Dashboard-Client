@@ -8,10 +8,14 @@ export const MESSAGES = {
   PROFILE_EDIT_SUCC: "Your profile has been updated!",
   CHANGE_PASSWORD_SUCC: "Password is changed!",
   EMPTY_EMAIL: "Email is empty",
+  EMPTY_TITLE: "Title is empty",
+  EMPTY_DESC: "Description is empty",
   EMAIL_SENT_SUCC: "Email has been sent",
   WRONG_VERIFICATION: "The verification code you entered is incorrect",
   VERIFICATION_EMAIL_SENT: "Verification code has been sent to your email",
   REGISTER_SUCC: "You have been registered with NNECT",
+  UNEXPECTED_ERROR: "Unexpected error, please try again",
+  INVALID_MAX_PEOPLE: "Maximum people is not indicated or not a valid number",
 };
 
 export const COLORS = {

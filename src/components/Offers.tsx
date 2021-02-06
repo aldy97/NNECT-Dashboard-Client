@@ -44,7 +44,7 @@ function Offers({ user, updateOffersToRedux }: OffersProperty) {
   // an offer is selected after edit btn is clicked
   const [selectedOffer, setSelectedOffer] = useState<OfferPorps>();
 
-  const getOffers = async () => {
+  const getOffers = async (): Promise<void> => {
     const response = await axios.get(`${BASE_URL}/api/getOffers/${user._id}`);
     const offers: OfferPorps[] = response.data.offers;
     if (offers) {
@@ -53,12 +53,12 @@ function Offers({ user, updateOffersToRedux }: OffersProperty) {
     }
   };
 
-  const handleEditBtnClick = (index: number) => {
+  const handleEditBtnClick = (index: number): void => {
     setSelectedOffer(offers[index]);
     setIsEditModalVisible(true);
   };
 
-  const handleDelBtnClick = async (index: number) => {
+  const handleDelBtnClick = async (index: number): Promise<void> => {
     const result = await axios.delete(`${BASE_URL}/api/deleteOffer/${offers[index]._id}`);
     if (result.status === 204) {
       getOffers();
@@ -69,16 +69,16 @@ function Offers({ user, updateOffersToRedux }: OffersProperty) {
   };
 
   // Following functions handle add offer modal behavior
-  const showModal = () => {
+  const showModal = (): void => {
     setIsModalVisible(true);
   };
 
-  const handleCancel = () => {
+  const handleCancel = (): void => {
     setIsModalVisible(false);
   };
 
   // handle edit modal behavior
-  const handleEditCancel = () => {
+  const handleEditCancel = (): void => {
     setIsEditModalVisible(false);
   };
 

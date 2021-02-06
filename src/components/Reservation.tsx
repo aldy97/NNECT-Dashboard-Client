@@ -1,7 +1,50 @@
 import React from "react";
-import { Table, Empty } from "antd";
+import { Table, Empty, Button, Dropdown, Menu } from "antd";
 
-const columns = [
+enum Status {
+  RECEIVED = "Received",
+  CANCELLED = "Cancelled",
+  CONFIRMED = "Confirmed",
+  FINISHED = "Finished",
+}
+
+const menu = (
+  <Menu>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer">
+        {Status.RECEIVED}
+      </a>
+    </Menu.Item>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer">
+        {Status.CANCELLED}
+      </a>
+    </Menu.Item>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer">
+        {Status.CONFIRMED}
+      </a>
+    </Menu.Item>
+    <Menu.Item>
+      <a target="_blank" rel="noopener noreferrer">
+        {Status.FINISHED}
+      </a>
+    </Menu.Item>
+  </Menu>
+);
+
+// when received from server, status is a string, but it should be rendered as a node
+interface Reservation {
+  time: string;
+  number: number;
+  organizer: string;
+  contact: string;
+  email: string;
+  offer: string;
+  status: React.ReactNode | string;
+}
+
+const columns: { title: string; dataIndex: string; key: string }[] = [
   {
     title: "Event time",
     dataIndex: "time",
@@ -23,15 +66,41 @@ const columns = [
     key: "contact",
   },
   {
+    title: "Email",
+    dataIndex: "email",
+    key: "email",
+  },
+  {
     title: "Speical offer applied",
     dataIndex: "offer",
     key: "offer",
+  },
+  {
+    title: "Status",
+    dataIndex: "status",
+    key: "status",
+  },
+];
+
+const data: Reservation[] = [
+  {
+    time: "2021-02-05",
+    number: 10,
+    organizer: "Tom",
+    contact: "778-583-7371",
+    email: "fengxiong34@gmail.com",
+    offer: "No offer",
+    status: (
+      <Dropdown overlay={menu} placement="bottomCenter">
+        <Button>{Status.RECEIVED}</Button>
+      </Dropdown>
+    ),
   },
 ];
 
 function Reservation() {
   return (
-    <Table columns={columns}>
+    <Table columns={columns} dataSource={data}>
       <Empty></Empty>
     </Table>
   );

@@ -89,7 +89,7 @@ function AddOfferModal({
   }, [offer]);
 
   // create a new offer:
-  const handleCreateConfirm = async () => {
+  const handleCreateConfirm = async (): Promise<void> => {
     const requestBody = {
       title,
       restaurantID: user._id,
@@ -102,18 +102,38 @@ function AddOfferModal({
       repeat,
       maxPeople,
     };
-    const response = await axios.post(`${BASE_URL}/api/createOffer`, requestBody);
-    if (response.status === 201) {
-      message.success(MESSAGES.OFFER_ADD_SUCC);
-      getOffers();
-      setIsModalVisible(false);
-    } else {
-      message.error(response.data.message);
+
+    if (!title) {
+      message.error(MESSAGES.EMPTY_TITLE);
+      return;
+    }
+
+    if (!desc) {
+      message.error(MESSAGES.EMPTY_DESC);
+      return;
+    }
+
+    if (!maxPeople || maxPeople <= 0) {
+      message.error(MESSAGES.INVALID_MAX_PEOPLE);
+      return;
+    }
+
+    try {
+      const response = await axios.post(`${BASE_URL}/api/createOffer`, requestBody);
+      if (response.status === 201) {
+        message.success(MESSAGES.OFFER_ADD_SUCC);
+        getOffers();
+        setIsModalVisible(false);
+      } else {
+        message.error(response.data.message);
+      }
+    } catch (e) {
+      message.error(MESSAGES.UNEXPECTED_ERROR);
     }
   };
 
   // edit an existing offer:
-  const handleEditConfirm = async () => {
+  const handleEditConfirm = async (): Promise<void> => {
     const request = {
       _id: offer?._id,
       updatedFields: {
@@ -129,37 +149,56 @@ function AddOfferModal({
       },
     };
 
-    const response = await axios.put(`${BASE_URL}/api/editOffer`, request);
-    if (response.data.status === 200) {
-      message.success(response.data.message);
-      setIsModalVisible(false);
-      getOffers();
-    } else {
-      message.error(response.data.message);
+    if (!title) {
+      message.error(MESSAGES.EMPTY_TITLE);
+      return;
+    }
+
+    if (!desc) {
+      message.error(MESSAGES.EMPTY_DESC);
+      return;
+    }
+
+    if (!maxPeople || maxPeople <= 0) {
+      message.error(MESSAGES.INVALID_MAX_PEOPLE);
+      return;
+    }
+
+    try {
+      const response = await axios.put(`${BASE_URL}/api/editOffer`, request);
+      if (response.data.status === 200) {
+        message.success(response.data.message);
+        setIsModalVisible(false);
+        getOffers();
+      } else {
+        message.error(response.data.message);
+      }
+    } catch (e) {
+      message.error(MESSAGES.UNEXPECTED_ERROR);
     }
   };
 
-  const handleMaxPeopleChange = (value: string | number | null | undefined) => {
+  const handleMaxPeopleChange = (value: string | number | null | undefined): void => {
     setMaxPeople(value as number);
   };
 
-  const handleStartDateChange = (value: Moment | null, dateString: string) => {
+  const handleStartDateChange = (value: Moment | null, dateString: string): void => {
     setStartDate(dateString);
   };
 
-  const handleEndDateChange = (value: Moment | null, dateString: string) => {
+  const handleEndDateChange = (value: Moment | null, dateString: string): void => {
     setEndDate(dateString);
   };
 
-  const handleStartTimeChange = (time: Moment | null, timeString: string) => {
+  const handleStartTimeChange = (time: Moment | null, timeString: string): void => {
     setStartTime(timeString);
   };
 
-  const handleEndTimeChange = (time: Moment | null, timeString: string) => {
+  const handleEndTimeChange = (time: Moment | null, timeString: string): void => {
     setEndTime(timeString);
   };
 
-  const handleMenuItemClick = (index: number) => {
+  const handleMenuItemClick = (index: number): void => {
     const optionsArr = Object.values(options);
     setRepeat(optionsArr[index]);
   };
