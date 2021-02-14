@@ -1,8 +1,7 @@
 import React from "react";
-import Reservation from "../components/Reservation";
 import Offers from "../components/Offers";
 import Calendar from "../components/Calendar";
-import { Card, CardHeader, CardBody, CardTitle, Row, Col, CardText } from "reactstrap";
+import { Card, CardHeader, CardBody, CardTitle, Row, Col } from "reactstrap";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
@@ -22,19 +21,6 @@ function Dashboard(props) {
                   <div className="block block-four" />
                   <h3 className="title">{user.name}</h3>
                 </div>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-
-        <Row>
-          <Col>
-            <Card>
-              <CardHeader>
-                <CardTitle tag="h3">Reservations</CardTitle>
-              </CardHeader>
-              <CardBody>
-                <Reservation></Reservation>
               </CardBody>
             </Card>
           </Col>

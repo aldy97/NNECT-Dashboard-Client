@@ -8,7 +8,7 @@ import PerfectScrollbar from "perfect-scrollbar";
 
 // reactstrap components
 import { Nav, NavLink as ReactstrapNavLink } from "reactstrap";
-import { BackgroundColorContext, backgroundColors } from "contexts/BackgroundColorContext";
+import { BackgroundColorContext } from "contexts/BackgroundColorContext";
 
 var ps;
 
@@ -69,14 +69,22 @@ function Sidebar(props) {
       );
     } else {
       logoImg = (
-        <Link to={logo.innerLink} className="simple-text logo-mini" onClick={props.toggleSidebar}>
+        <Link
+          to={logo.innerLink}
+          className="simple-text logo-mini"
+          onClick={props.toggleSidebar}
+        >
           <div className="logo-img">
             <img src={logo.imgSrc} alt="react-logo" />
           </div>
         </Link>
       );
       logoText = (
-        <Link to={logo.innerLink} className="simple-text logo-normal" onClick={props.toggleSidebar}>
+        <Link
+          to={logo.innerLink}
+          className="simple-text logo-normal"
+          onClick={props.toggleSidebar}
+        >
           {logo.text}
         </Link>
       );
@@ -86,7 +94,11 @@ function Sidebar(props) {
     <BackgroundColorContext.Consumer>
       {({ color }) => (
         <div className="sidebar" data={color}>
-          <div className="sidebar-wrapper" ref={sidebarRef} style={{ background: "#14E5C6" }}>
+          <div
+            className="sidebar-wrapper"
+            ref={sidebarRef}
+            style={{ background: "#14E5C6" }}
+          >
             {logoImg !== null || logoText !== null ? (
               <div className="logo">
                 {logoImg}
@@ -98,7 +110,9 @@ function Sidebar(props) {
                 if (prop.redirect) return null;
                 return (
                   <li
-                    className={activeRoute(prop.path) + (prop.pro ? " active-pro" : "")}
+                    className={
+                      activeRoute(prop.path) + (prop.pro ? " active-pro" : "")
+                    }
                     key={key}
                   >
                     <NavLink

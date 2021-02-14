@@ -20,8 +20,11 @@ export const MESSAGES = {
 
 export const COLORS = {
   THEMEBLUE: "#1890ff",
-  UNSELECTEDOPTION: "#000000a6",
+  RED: "#f5222d",
+  YELLOW: "#fff566",
+  GREEN: "#389e0d",
   ORANGE: "#ffa940",
+  UNSELECTEDOPTION: "#000000a6",
 };
 
 export const DEV_URL = "http://localhost:7001";
